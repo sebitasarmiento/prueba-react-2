@@ -1,24 +1,27 @@
-// components/Home.js
-import React, { useContext } from 'react';
-import { GlobalContext } from '../context/GlobalContext';
+import React, { useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
 const Home = () => {
   const { pizza, cartItems, setCartItems } = useContext(GlobalContext);
 
   const addToCart = (item) => {
-    // Check if the item is already in the cart
-    const existingCartItem = cartItems.find((cartItem) => cartItem.id === item.id);
+    const existingCartItem = cartItems.find(
+      (cartItem) => cartItem.id === item.id
+    );
 
     if (existingCartItem) {
-      // If the item is already in the cart, update its quantity
       setCartItems((prevCartItems) =>
         prevCartItems.map((cartItem) =>
-          cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
         )
       );
     } else {
-      // If the item is not in the cart, add it with a quantity of 1
-      setCartItems((prevCartItems) => [...prevCartItems, { ...item, quantity: 1 }]);
+      setCartItems((prevCartItems) => [
+        ...prevCartItems,
+        { ...item, quantity: 1 },
+      ]);
     }
   };
 

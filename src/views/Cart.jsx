@@ -1,24 +1,30 @@
-// components/Cart.js
-import React, { useContext } from 'react';
-import { GlobalContext } from '../context/GlobalContext';
+import React, { useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
 const Cart = () => {
   const { cartItems, setCartItems } = useContext(GlobalContext);
 
   const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0) / 100;
+    return (
+      cartItems.reduce((total, item) => total + item.price * item.quantity, 0) /
+      100
+    );
   };
 
   const incrementQuantity = (item) => {
     const updatedCartItems = cartItems.map((cartItem) =>
-      cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
+      cartItem.id === item.id
+        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+        : cartItem
     );
     setCartItems(updatedCartItems);
   };
 
   const decrementQuantity = (item) => {
     const updatedCartItems = cartItems.map((cartItem) =>
-      cartItem.id === item.id ? { ...cartItem, quantity: Math.max(1, cartItem.quantity - 1) } : cartItem
+      cartItem.id === item.id
+        ? { ...cartItem, quantity: Math.max(1, cartItem.quantity - 1) }
+        : cartItem
     );
     setCartItems(updatedCartItems);
   };

@@ -1,7 +1,6 @@
-// components/PizzaDetail.js
-import React, { useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import { GlobalContext } from '../context/GlobalContext';
+import React, { useContext } from "react";
+import { useParams } from "react-router-dom";
+import { GlobalContext } from "../context/GlobalContext";
 
 const PizzaDetail = () => {
   const { pizza } = useContext(GlobalContext);
@@ -14,7 +13,11 @@ const PizzaDetail = () => {
 
   return (
     <div className="pizza-detail">
-      <img className="card-img" src={selectedPizza.img} alt={selectedPizza.name} />
+      <img
+        className="card-img"
+        src={selectedPizza.img}
+        alt={selectedPizza.name}
+      />
       <div className="card-content">
         <h2>{selectedPizza.name}</h2>
         <p>{selectedPizza.desc}</p>
