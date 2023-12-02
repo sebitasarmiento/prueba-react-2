@@ -19,8 +19,7 @@ const App = () => {
           <Route path="/pizza/:id" element={<PizzaDetail />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
-        <Footer />
-      </div>
+      </div>  <Footer />
     </GlobalProvider>
   );
 };

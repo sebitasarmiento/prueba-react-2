@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { pizza, cartItems, setCartItems } = useContext(GlobalContext);
@@ -26,22 +27,28 @@ const Home = () => {
   };
 
   return (
-    <div className="productos">
-      {pizza.map((item) => (
-        <div key={item.id} className="card">
-          <img className="card-img" src={item.img} alt={item.name} />
-          <div className="card-content">
-            <h2>{item.name}</h2>
-            <p>{item.desc}</p>
-            <p>Precio: ${item.price / 100}</p>
-            <ul>
-              {item.ingredients.map((ingredient, index) => (
-                <li key={index}>{ingredient}</li>
-              ))}
-            </ul>
-            <button className="btn" onClick={() => addToCart(item)}>
-              Agregar al carrito
-            </button>
+    <div className="grid">
+      {pizza.map((item, index) => (
+        <div key={index} className="grid__item">
+          <div className="card">
+            <img className="card__img" src={item.img} alt={item.name} />
+            <div className="card__content">
+              <h2 className="card__header">{item.name}</h2>
+              <p className="card__price">Precio: ${item.price / 100}</p>
+              <ul className="card__ingredients">
+                {item.ingredients.map((ingredient, ingredientIndex) => (
+                  <li key={ingredientIndex}>{ingredient}</li>
+                ))}
+              </ul>
+              <button className="card__btn" onClick={() => addToCart(item)}>
+                Agregar al carrito
+              </button>
+              <button>
+                <Link to={`/pizza/${item.id}`} className="card__btn">
+                  Ver mas
+                </Link>
+              </button>
+            </div>
           </div>
         </div>
       ))}
@@ -50,3 +57,4 @@ const Home = () => {
 };
 
 export default Home;
+
